@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CapstoneprojectModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminInfo">
+    <Key>
+      <PropertyRef Name="EmailId" />
+    </Key>
+    <Property Name="EmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BlogInfo">
+    <Key>
+      <PropertyRef Name="BlogId" />
+    </Key>
+    <Property Name="BlogId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfCreation" Type="DateTime" Precision="3" />
+    <Property Name="BlogUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EmpEmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EmpInfo" Relationship="Self.FK__BlogInfo__EmpEma__3B75D760" FromRole="BlogInfo" ToRole="EmpInfo" />
+  </EntityType>
+  <EntityType Name="EmpInfo">
+    <Key>
+      <PropertyRef Name="EmailId" />
+    </Key>
+    <Property Name="EmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfJoining" Type="DateTime" Precision="3" />
+    <Property Name="PassCode" Type="Int32" />
+    <NavigationProperty Name="BlogInfoes" Relationship="Self.FK__BlogInfo__EmpEma__3B75D760" FromRole="EmpInfo" ToRole="BlogInfo" />
+  </EntityType>
+  <Association Name="FK__BlogInfo__EmpEma__3B75D760">
+    <End Role="EmpInfo" Type="Self.EmpInfo" Multiplicity="0..1" />
+    <End Role="BlogInfo" Type="Self.BlogInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmpInfo">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="BlogInfo">
+        <PropertyRef Name="EmpEmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CapstoneprojectEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminInfoes" EntityType="Self.AdminInfo" />
+    <EntitySet Name="BlogInfoes" EntityType="Self.BlogInfo" />
+    <EntitySet Name="EmpInfoes" EntityType="Self.EmpInfo" />
+    <AssociationSet Name="FK__BlogInfo__EmpEma__3B75D760" Association="Self.FK__BlogInfo__EmpEma__3B75D760">
+      <End Role="EmpInfo" EntitySet="EmpInfoes" />
+      <End Role="BlogInfo" EntitySet="BlogInfoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

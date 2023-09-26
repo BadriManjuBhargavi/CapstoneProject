@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CapstoneprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminInfo">
+    <Key>
+      <PropertyRef Name="EmailId" />
+    </Key>
+    <Property Name="EmailId" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BlogInfo">
+    <Key>
+      <PropertyRef Name="BlogId" />
+    </Key>
+    <Property Name="BlogId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="255" />
+    <Property Name="DateOfCreation" Type="datetime" />
+    <Property Name="BlogUrl" Type="nvarchar" MaxLength="255" />
+    <Property Name="EmpEmailId" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="EmpInfo">
+    <Key>
+      <PropertyRef Name="EmailId" />
+    </Key>
+    <Property Name="EmailId" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="DateOfJoining" Type="datetime" />
+    <Property Name="PassCode" Type="int" />
+  </EntityType>
+  <Association Name="FK__BlogInfo__EmpEma__3B75D760">
+    <End Role="EmpInfo" Type="Self.EmpInfo" Multiplicity="0..1" />
+    <End Role="BlogInfo" Type="Self.BlogInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmpInfo">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="BlogInfo">
+        <PropertyRef Name="EmpEmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CapstoneprojectModelStoreContainer">
+    <EntitySet Name="AdminInfo" EntityType="Self.AdminInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogInfo" EntityType="Self.BlogInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmpInfo" EntityType="Self.EmpInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BlogInfo__EmpEma__3B75D760" Association="Self.FK__BlogInfo__EmpEma__3B75D760">
+      <End Role="EmpInfo" EntitySet="EmpInfo" />
+      <End Role="BlogInfo" EntitySet="BlogInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

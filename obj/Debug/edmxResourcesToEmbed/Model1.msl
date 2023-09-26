@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CapstoneprojectModelStoreContainer" CdmEntityContainer="CapstoneprojectEntities">
+    <EntitySetMapping Name="AdminInfoes">
+      <EntityTypeMapping TypeName="CapstoneprojectModel.AdminInfo">
+        <MappingFragment StoreEntitySet="AdminInfo">
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlogInfoes">
+      <EntityTypeMapping TypeName="CapstoneprojectModel.BlogInfo">
+        <MappingFragment StoreEntitySet="BlogInfo">
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
+          <ScalarProperty Name="BlogUrl" ColumnName="BlogUrl" />
+          <ScalarProperty Name="EmpEmailId" ColumnName="EmpEmailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmpInfoes">
+      <EntityTypeMapping TypeName="CapstoneprojectModel.EmpInfo">
+        <MappingFragment StoreEntitySet="EmpInfo">
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="PassCode" ColumnName="PassCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

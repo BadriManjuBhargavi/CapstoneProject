@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CapstoneprojectModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminInfo">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="BlogInfo">
+          <Key>
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="BlogId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateOfCreation" Type="datetime" />
+          <Property Name="BlogUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmpEmailId" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmpInfo">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateOfJoining" Type="datetime" />
+          <Property Name="PassCode" Type="int" />
+        </EntityType>
+        <Association Name="FK__BlogInfo__EmpEma__3B75D760">
+          <End Role="EmpInfo" Type="Self.EmpInfo" Multiplicity="0..1" />
+          <End Role="BlogInfo" Type="Self.BlogInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpInfo">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="BlogInfo">
+              <PropertyRef Name="EmpEmailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CapstoneprojectModel1StoreContainer">
+          <EntitySet Name="AdminInfo" EntityType="Self.AdminInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogInfo" EntityType="Self.BlogInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpInfo" EntityType="Self.EmpInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BlogInfo__EmpEma__3B75D760" Association="Self.FK__BlogInfo__EmpEma__3B75D760">
+            <End Role="EmpInfo" EntitySet="EmpInfo" />
+            <End Role="BlogInfo" EntitySet="BlogInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CapstoneprojectModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminInfo">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BlogInfo">
+          <Key>
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="BlogId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfCreation" Type="DateTime" Precision="3" />
+          <Property Name="BlogUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmpEmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmpInfo" Relationship="Self.FK__BlogInfo__EmpEma__3B75D760" FromRole="BlogInfo" ToRole="EmpInfo" />
+        </EntityType>
+        <EntityType Name="EmpInfo">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfJoining" Type="DateTime" Precision="3" />
+          <Property Name="PassCode" Type="Int32" />
+          <NavigationProperty Name="BlogInfoes" Relationship="Self.FK__BlogInfo__EmpEma__3B75D760" FromRole="EmpInfo" ToRole="BlogInfo" />
+        </EntityType>
+        <Association Name="FK__BlogInfo__EmpEma__3B75D760">
+          <End Role="EmpInfo" Type="Self.EmpInfo" Multiplicity="0..1" />
+          <End Role="BlogInfo" Type="Self.BlogInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpInfo">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="BlogInfo">
+              <PropertyRef Name="EmpEmailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CapstoneprojectEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminInfoes" EntityType="Self.AdminInfo" />
+          <EntitySet Name="BlogInfoes" EntityType="Self.BlogInfo" />
+          <EntitySet Name="EmpInfoes" EntityType="Self.EmpInfo" />
+          <AssociationSet Name="FK__BlogInfo__EmpEma__3B75D760" Association="Self.FK__BlogInfo__EmpEma__3B75D760">
+            <End Role="EmpInfo" EntitySet="EmpInfoes" />
+            <End Role="BlogInfo" EntitySet="BlogInfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CapstoneprojectModel1StoreContainer" CdmEntityContainer="CapstoneprojectEntities1">
+          <EntitySetMapping Name="AdminInfoes">
+            <EntityTypeMapping TypeName="CapstoneprojectModel1.AdminInfo">
+              <MappingFragment StoreEntitySet="AdminInfo">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogInfoes">
+            <EntityTypeMapping TypeName="CapstoneprojectModel1.BlogInfo">
+              <MappingFragment StoreEntitySet="BlogInfo">
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
+                <ScalarProperty Name="BlogUrl" ColumnName="BlogUrl" />
+                <ScalarProperty Name="EmpEmailId" ColumnName="EmpEmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpInfoes">
+            <EntityTypeMapping TypeName="CapstoneprojectModel1.EmpInfo">
+              <MappingFragment StoreEntitySet="EmpInfo">
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+                <ScalarProperty Name="PassCode" ColumnName="PassCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
